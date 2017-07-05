@@ -1,1 +1,4 @@
 bpPython
+.idea/
+Would skip repository mysite/
+theworst/components/
