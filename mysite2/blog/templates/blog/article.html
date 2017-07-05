@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>{{ data.title }}</h2>
+<p>{{ data.author }} - {{ data.timestamp }}</p>
+{{ data.body|safe }}
+{% endblock %}
