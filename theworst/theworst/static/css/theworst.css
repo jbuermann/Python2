@@ -1,0 +1,67 @@
+/*
+===========================
+    STANDARDS
+===========================
+*/
+
+body
+{
+    padding: 0;
+    margin: 0;
+}
+
+
+/*
+===========================
+    NAVBAR
+===========================
+*/
+.navbar-child
+{
+    padding-left: 10px;
+}
+
+/*
+===========================
+    CONTENT LAYOUT
+===========================
+*/
+
+#page
+{
+    width: 1170px;
+    margin: auto;
+    margin-top: 60px;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    border: solid 1px #666;
+}
+
+/*
+===========================
+    REQUIRED - DO NOT TOUCH
+===========================
+*/
+
+.rich-text img
+{
+    max-width: 100%;
+    height: auto;
+}
+
+.responsive-object
+{
+    position: relative;
+}
+
+.responsive-object iframe,
+.responsive-object object,
+.responsive-object embed
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

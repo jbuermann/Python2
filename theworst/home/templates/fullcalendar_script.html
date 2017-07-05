@@ -1,0 +1,59 @@
+{% load scheduletags i18n %}
+<script type='text/javascript'>
+$(document).ready(function()
+{
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    $('#calendar').fullCalendar(
+    {
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+         events: "{% url 'api_occurences' %}?calendar_slug={{calendar_slug}}",
+         loading: function(bool) {
+            if (bool) {
+                $('#loading').show();
+            }else{
+                $('#loading').hide();
+            }
+        },
+         eventRender: function(event, element)
+         {
+            title = element.children().find( '.fc-title' );
+            title.html('<a style="color: #fff;" href="' + getEventViewURL(event) + '">' + title.html() + '</a>')
+        },
+        dayClick: function(date, allDay, jsEvent, view) {
+                    if (allDay) {
+                        $('#calendar').fullCalendar('changeView', 'agendaWeek');
+                        $("#calendar").fullCalendar('gotoDate', date);
+                    }
+                },
+    });
+
+
+    function getEventViewURL(event){
+        if (event.existed){
+            if("{{ request.get_full_path }}".indexOf("/admin") != 0){
+                var view_url = "{% url 'occurrence' 12345 6789 %}".replace(/12345/, event.event_id).replace(/6789/, event.id);
+            }
+            else{
+                var view_url = "{% url 'admin:schedule_occurrence_change' 12345 %}".replace(/12345/, event.id)
+            }
+        }
+        else {
+            if("{{ request.get_full_path }}".indexOf("/admin") != 0){
+                var view_url = "{% url 'event' 12345 %}".replace(/12345/, event.event_id);
+            }
+            else{
+                var view_url = "{% url 'admin:schedule_event_change' 12345 %}".replace(/12345/, event.event_id)
+            }
+        }
+        return view_url;
+    }
+});
+</script>

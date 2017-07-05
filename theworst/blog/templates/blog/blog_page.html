@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+<!--# Load in OWL Carousel-->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "/owl.carousel/dist/assets/owl.carousel.min.css" %}" />
+    <link rel="stylesheet" href="{% static "/owl.carousel/dist/assets/owl.theme.default.css" %}" />
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static "owl.carousel/dist/owl.carousel.min.js" %}"></script>
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel({
+                items : 1,
+                loop : true,
+                center : true,
+                autoWidth:true,
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ page.date }}</p>
+
+    {% for block in page.content %}
+
+        {% if block.block_type == 'heading' %}
+           <h2>{% include_block block %}</h2>
+        {% endif %}
+
+        {% if block.block_type == 'sub_heading' %}
+            <h3>{% include_block block %}</h3>
+        {% endif %}
+
+        {% if block.block_type == 'paragraph' %}
+            {% include_block block %}
+        {% endif %}
+
+        {% if block.block_type == 'gallery' %}
+            {% include_block block %}
+
+        {% endif %}
+
+    {% endfor %}
+
+    {% if page.tags.all.count %}
+        <div class="tags">
+            <h3>Tags</h3>
+            {% for tag in page.tags.all %}
+                <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+
+{% endblock %}
