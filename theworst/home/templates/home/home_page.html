@@ -1,29 +1,46 @@
-{% extends "base.html" %}
+{% extends "baseThree.html" %}
 
 {% load wagtailcore_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
+    {% block jumbotron %}
+        <div class="jumbotron">
+            <div class="container">
 
-{% block content %}
+                <h1>The Worst Website On Earth</h1>
+                <p>Some other text</p>
+                <br>
+                <p>
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Button »</a>
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a>
+                </p>
 
-    {{ page.body|richtext }}
+            </div>
+        </div>
+    {% endblock %}
 
-    <h2>Upcoming Events</h2>
-    {% for post in events %}
-            <hr>
-            <h3><a href="">{{ post }}</a></h3>
-            <!--<p>{{ post.start|date:_("DATETIME_FORMAT") }} - {{ post.end|date:_("DATETIME_FORMAT") }}</p>-->
+    {% block leftContent %}
+        <h2>Upcoming Events</h2>
+        {% for post in events %}
+                <hr>
+                <h3><a href="">{{ post }}</a></h3>
+                <!--<p>{{ post.start|date:_("DATETIME_FORMAT") }} - {{ post.end|date:_("DATETIME_FORMAT") }}</p>-->
 
-    {% endfor %}
+        {% endfor %}
+    {% endblock %}
 
-    <h2>News Feed</h2>
-    {% for post in pages %}
-        {% with post=post.specific %}
-            <hr>
-            <h3><a href="{% pageurl post %}">{{ post.title }}</a></h3>
-            <p>{{ post.intro }}</p>
-        {% endwith %}
-    {% endfor %}
+    {% block content %}
+        {{ page.body|richtext }}
+    {% endblock %}
 
-{% endblock %}
+    {% block rightContent %}
+        <h2>News Feed</h2>
+        {% for post in pages %}
+            {% with post=post.specific %}
+                <hr>
+                <h3><a href="{% pageurl post %}">{{ post.title }}</a></h3>
+                <p>{{ post.intro }}</p>
+            {% endwith %}
+        {% endfor %}
+    {% endblock %}

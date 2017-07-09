@@ -6,7 +6,6 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from blog import models as blog_models
-from schedule.models import Event
 
 
 class HomePage(Page):
@@ -24,9 +23,5 @@ class HomePage(Page):
         # ToDo A better way would be to add a bool field to pages to be included in homepage feed or not
         context['pages'] = Page.objects.in_site(request.site).live().descendant_of(self)\
             .not_type((blog_models.BlogIndexPage,blog_models.BlogTagIndexPage)).order_by('-first_published_at')
-
-        # I would like to show a list of new events but all this
-        # gives me is a list of strings, no url.. :(
-        context['events'] = Event.objects.all()
 
         return context

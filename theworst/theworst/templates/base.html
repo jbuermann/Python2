@@ -1,5 +1,4 @@
 {% load static wagtailuserbar theworst_tags %}
-
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,8 +18,9 @@
         <script type="text/javascript" src='{% static 'jquery/dist/jquery.js' %}'></script>
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/theworst.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static '/bootstrap/dist/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/theworst.css' %}">
+
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -37,9 +37,13 @@
             {% top_menu parent=site_root calling_page=self %}
         {% endblock %}
 
+
         <div id='page'>
+
+            {% block jumptron %}{% endblock %}
             {% block content %}{% endblock %}
             {% block body %}{% endblock %}
+
         </div>
 
         {% wagtailuserbar %}
