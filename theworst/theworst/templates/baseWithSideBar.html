@@ -20,6 +20,7 @@
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static '/bootstrap/dist/css/bootstrap.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/theworst.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Tangerine" rel="stylesheet">
 
 
         {% block extra_css %}
@@ -40,20 +41,17 @@
 
         <div id='page'>
 
-            {% block jumptron %}{% endblock %}
+            {% block jumbotron %}{% endblock %}
 
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         {% block leftContent %}{% endblock %}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-10">
                         {% block content %}{% endblock %}
                         {% block body %}{% endblock %}
-                    </div>
-                    <div class="col-md-4">
-                        {% block rightContent %}{% endblock %}
                     </div>
                 </div>
             </div>

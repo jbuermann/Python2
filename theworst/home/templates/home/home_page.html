@@ -1,4 +1,4 @@
-{% extends "baseThree.html" %}
+{% extends "baseWithSideBar.html" %}
 
 {% load wagtailcore_tags %}
 
@@ -8,33 +8,16 @@
         <div class="jumbotron">
             <div class="container">
 
-                <h1>The Worst Website On Earth</h1>
-                <p>Some other text</p>
+                <h1>The Worst Human Society</h1>
+                <p>It's time to embrace the voices.</p>
                 <br>
-                <p>
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Button »</a>
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Join Us »</a>
                     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a>
-                </p>
-
             </div>
         </div>
     {% endblock %}
 
     {% block leftContent %}
-        <h2>Upcoming Events</h2>
-        {% for post in events %}
-                <hr>
-                <h3><a href="">{{ post }}</a></h3>
-                <!--<p>{{ post.start|date:_("DATETIME_FORMAT") }} - {{ post.end|date:_("DATETIME_FORMAT") }}</p>-->
-
-        {% endfor %}
-    {% endblock %}
-
-    {% block content %}
-        {{ page.body|richtext }}
-    {% endblock %}
-
-    {% block rightContent %}
         <h2>News Feed</h2>
         {% for post in pages %}
             {% with post=post.specific %}
@@ -44,3 +27,20 @@
             {% endwith %}
         {% endfor %}
     {% endblock %}
+
+    {% block content %}
+        <h2>{{ page.title }}</h2>
+        {{ page.body|richtext }}
+
+        <h2>Upcoming Events</h2>
+        {% for post in events %}
+            {% with post=post.specific %}
+                <hr>
+                <h3><a href="{% pageurl post %}">{{ post.title }}</a></h3>
+                <p>{{ post.start }} - {{ post.end }}</p>
+                <p>{{ post.intro }}</p>
+            {% endwith %}
+        {% endfor %}
+
+    {% endblock %}
+

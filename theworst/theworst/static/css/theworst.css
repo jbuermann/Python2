@@ -1,6 +1,13 @@
 /*
 ===========================
     STANDARDS
+        Purple: #620784
+        Dark Gray: #444444
+        Teal: #0097BF
+
+        font-family: 'Great Vibes', cursive;
+        font-family: 'Tangerine', cursive;
+        font-family: 'Roboto', sans-serif;
 ===========================
 */
 
@@ -8,9 +15,36 @@ body
 {
     padding: 0;
     margin: 0;
-    border: solid 1px red;
+    background-color: #444444;
+    color: #bebcbc;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 
+a
+{
+    text-decoration: underline;
+}
+
+a:focus, a:hover
+{
+    color: #0097BF;
+    text-decoration: underline;
+}
+
+.btn-default,
+.btn-default:hover,
+.btn-default:active
+{
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-default:hover
+{
+    color: #0097BF;
+}
 
 /*
 ===========================
@@ -28,28 +62,45 @@ body
     padding-left: 10px;
 }
 
-.navbar-inverse {
+.navbar-inverse
+{
 	background: #2E2F31;
 	border: 0;
 }
-.navbar-inverse .navbar-nav li a {
-	color: #f7f7f7;
-	font-size: 16px;
-}
-.navbar-inverse .navbar-nav li a:hover {
-	background: #27A967;
+
+.navbar-inverse a,
+.navbar-inverse .navbar-nav li a
+{
+	color: #9d9d9d;
+	text-decoration: none;
+
 }
 
-.dropdown-menu {
+.navbar-inverse .navbar-nav li a:hover
+{
+	background: #000;
+}
+
+.navbar-form .form-control
+{
+    background-color: #444;
+}
+
+.dropdown-menu
+{
 	background: #2E2F31;
 	border-radius: 0;
 	border: 0;
 }
-.dropdown-menu li a {
+
+.dropdown-menu li a
+{
 	padding: 10px;
 }
-.navbar-inverse .navbar-nav .dropdown-menu li a:hover {
-	background: #2C463C;
+
+.navbar-inverse .navbar-nav .dropdown-menu li a:hover
+{
+	background: #452c46;
 }
 
 /*
@@ -60,25 +111,41 @@ body
 
 
 .jumbotron {
-	background: #27A967;
-	color: white;
+	background: #620784;
+	color: #c3c0c0;
 	text-align: center;
 }
-.jumbotron p {
-	color: white;
-	font-size: 26px;
+
+.jumbotron h1
+{
+	font-family: 'Tangerine', cursive;
+    font-size: 148px;
+    text-shadow: 4px 4px #000000;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
 }
 
-btn-primary {
+.jumbotron p
+{
+	font-family: 'Tangerine', cursive;
+	font-size: 60px;
+	line-height: normal;
+}
+
+.btn-primary
+{
 	color: #fff;
 	background-color: transparent;
 	border-color: white;
 	margin-bottom: 5px;
+	text-decoration: none;
 }
-.btn-primary:hover {
-	color: #27A967;
-	background-color: white;
-	border-color: white;
+.btn-primary:hover
+{
+	color: #0097BF;
+	border-color: #0097BF;
+	background-color: transparent;
 }
 
 /*
@@ -95,7 +162,6 @@ btn-primary {
     padding: 10px;
     position: relative;
     overflow: hidden;
-    border: solid 1px #666;
 }
 
 /*

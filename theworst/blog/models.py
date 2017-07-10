@@ -12,6 +12,17 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFie
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailsearch import index
 
+COMMON_BLOCKS = [
+    ('sub_heading', blocks.CharBlock(classname="sub title")),
+    ('paragraph', blocks.RichTextBlock()),
+    ('gallery', blocks.ListBlock(
+        blocks.StructBlock([
+            ('image', ImageChooserBlock()),
+            ('caption', blocks.CharBlock())
+        ]), template="blog/blocks/carousel.html",
+    ))
+]
+
 
 # Index page for the Blog section (Called Articles in the UI)
 class BlogIndexPage(Page):
@@ -33,18 +44,8 @@ class BlogPageTag(TaggedItemBase):
 class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
-    content = StreamField([
-        ('sub_heading', blocks.CharBlock(classname="sub title")),
-        ('paragraph', blocks.RichTextBlock()),
-        ('gallery', blocks.ListBlock(
-            blocks.StructBlock([
-                ('image', ImageChooserBlock()),
-                ('caption', blocks.CharBlock())
-            ]), template="blog/blocks/carousel.html",
-        )),
-    ], null=True, blank=True)
+    content = StreamField(COMMON_BLOCKS, null=True, blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -80,3 +81,42 @@ class BlogTagIndexPage(Page):
         return context
 
 
+#
+# EVENTS
+#
+class EventIndexPage(Page):
+    intro = RichTextField(blank=True)
+
+    def get_context(self, request, **kwargs):
+        # Update context to include only published posts, ordered by reverse-chron
+        context = super(EventIndexPage, self).get_context(request)
+        context['events'] = self.get_children().live().order_by('-first_published_at')
+        return context
+
+
+# All data we need to compose an Event Page
+class EventPage(Page):
+    start = models.DateTimeField("Start date")
+    end = models.DateTimeField("End date")
+    intro = models.CharField(max_length=250)
+    location = models.CharField(max_length=250)
+    content = StreamField(COMMON_BLOCKS + [
+        ('external_url', blocks.URLBlock())
+    ], null=True, blank=True)
+
+    search_fields = Page.search_fields + [
+        index.SearchField('intro'),
+        index.SearchField('content'),
+    ]
+
+    # Add fields to the admin page, content panels also add UI
+    # MultiFieldPanel combines a group of fields
+    content_panels = Page.content_panels + [
+        MultiFieldPanel([
+            FieldPanel('start'),
+            FieldPanel('end'),
+            FieldPanel('location'),
+        ], heading="Event Information"),
+        FieldPanel('intro'),
+        StreamFieldPanel('content'),
+    ]
