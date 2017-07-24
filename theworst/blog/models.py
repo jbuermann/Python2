@@ -11,6 +11,8 @@ from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailsearch import index
+from wagtail.wagtailimages.models import Image
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 COMMON_BLOCKS = [
     ('sub_heading', blocks.CharBlock(classname="sub title")),
@@ -26,7 +28,11 @@ COMMON_BLOCKS = [
 
 # Index page for the Blog section (Called Articles in the UI)
 class BlogIndexPage(Page):
-    intro = RichTextField(blank=True)
+    body = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body', classname="full"),
+    ]
 
     def get_context(self, request, **kwargs):
         # Update context to include only published posts, ordered by reverse-chron
@@ -46,6 +52,13 @@ class BlogPage(Page):
     intro = models.CharField(max_length=250)
     content = StreamField(COMMON_BLOCKS, null=True, blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+    cover = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -58,6 +71,7 @@ class BlogPage(Page):
         MultiFieldPanel([
             FieldPanel('date'),
             FieldPanel('tags'),
+            ImageChooserPanel('cover'),
         ], heading="Blog information"),
         FieldPanel('intro'),
         StreamFieldPanel('content'),
@@ -85,7 +99,11 @@ class BlogTagIndexPage(Page):
 # EVENTS
 #
 class EventIndexPage(Page):
-    intro = RichTextField(blank=True)
+    body = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body', classname="full"),
+    ]
 
     def get_context(self, request, **kwargs):
         # Update context to include only published posts, ordered by reverse-chron
@@ -100,9 +118,8 @@ class EventPage(Page):
     end = models.DateTimeField("End date")
     intro = models.CharField(max_length=250)
     location = models.CharField(max_length=250)
-    content = StreamField(COMMON_BLOCKS + [
-        ('external_url', blocks.URLBlock())
-    ], null=True, blank=True)
+    facebook = models.CharField(max_length=250, null=True, blank=True)
+    content = StreamField(COMMON_BLOCKS, null=True, blank=True)
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -116,6 +133,7 @@ class EventPage(Page):
             FieldPanel('start'),
             FieldPanel('end'),
             FieldPanel('location'),
+            FieldPanel('facebook'),
         ], heading="Event Information"),
         FieldPanel('intro'),
         StreamFieldPanel('content'),

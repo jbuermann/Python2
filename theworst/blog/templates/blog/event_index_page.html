@@ -4,20 +4,26 @@
 
 {% block body_class %}template-blogindexpage{% endblock %}
 
-{% block content %}
-    <h1>{{ page.title }}</h1>
+{% block pageTitle %}Stuff To Do{% endblock %}
 
+{% block content %}
     <div class="intro">{{ page.intro|richtext }}</div>
 
     {% for post in events %}
         {% with post=post.specific %}
-            <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-
-            {% with post.main_image as main_image %}
-                {% if main_image %}{% image main_image fill-160x100 %}{% endif %}
-            {% endwith %}
-
-            <p>{{ post.intro }}</p>
+            <a class="noUnderline" href="{% pageurl post %}">
+                <div class="square">
+                    <div class="imgPlaceholder left">
+                        {% with post.cover as cover %}
+                            {% if cover %}{% image cover width-160 %}{% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="squareContent left">
+                        <h2>{{ post.title }}</h2>
+                        <p>{{ post.intro }}</p>
+                    </div>
+                </div>
+            </a>
         {% endwith %}
     {% endfor %}
 

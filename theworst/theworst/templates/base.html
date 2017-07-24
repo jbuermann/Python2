@@ -22,7 +22,6 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/theworst.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Tangerine" rel="stylesheet">
 
-
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
@@ -38,13 +37,18 @@
             {% top_menu parent=site_root calling_page=self %}
         {% endblock %}
 
-
         <div id='page'>
 
-            {% block jumptron %}{% endblock %}
-            {% block content %}{% endblock %}
-            {% block body %}{% endblock %}
+            {% block jumbotron %}{% endblock %}
 
+            <h1 class='nopadding'>
+                <a href='/' class="bpTitle">Buermann<br />Presents</a> {% block pageTitle %}{% endblock %}
+            </h1>
+
+            <div id='content'>
+                {% block content %}{% endblock %}
+                {% block body %}{% endblock %}
+            </div>
         </div>
 
         {% wagtailuserbar %}

@@ -41,17 +41,24 @@
 
         <div id='page'>
 
+            <h1 class='nopadding'>
+                <a href='/' class="bpTitle">Buermann<br />Presents</a> {% block pageTitle %}{% endblock %}
+            </h1>
+
             {% block jumbotron %}{% endblock %}
 
-
             <div class="container">
+                <!-- Main Content -->
+                {% block content %}{% endblock %}
+                {% block body %}{% endblock %}
+
+                <!-- Grid Content -->
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-6">
                         {% block leftContent %}{% endblock %}
                     </div>
-                    <div class="col-md-10">
-                        {% block content %}{% endblock %}
-                        {% block body %}{% endblock %}
+                    <div class="col-md-6">
+                        {% block rightContent %}{% endblock %}
                     </div>
                 </div>
             </div>
@@ -61,7 +68,7 @@
         {% wagtailuserbar %}
 
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/theworst.js' %}"></script>
+        <script src="{% static 'js/theworst.js' %}"></script>
         <script src="{% static '/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
         {% block extra_js %}

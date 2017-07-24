@@ -22,7 +22,7 @@ class HomePage(Page):
         # Query all pages for this site. That are live. Descendant from the homepage, and exclude blog index page types
         # ToDo A better way would be to add a bool field to pages to be included in homepage feed or not
         context['pages'] = Page.objects.in_site(request.site).live().descendant_of(self)\
-            .type(blog_models.BlogPage).order_by('-first_published_at')
+            .type(blog_models.BlogPage).order_by('-first_published_at')[:5]
 
         context['events'] = Page.objects.in_site(request.site).live().descendant_of(self)\
             .type(blog_models.EventPage).order_by('-first_published_at')

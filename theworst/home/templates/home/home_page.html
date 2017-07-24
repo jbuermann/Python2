@@ -1,46 +1,70 @@
 {% extends "baseWithSideBar.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "/owl.carousel/dist/assets/owl.carousel.min.css" %}" />
+    <link rel="stylesheet" href="{% static "/owl.carousel/dist/assets/owl.theme.default.css" %}" />
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static "owl.carousel/dist/owl.carousel.min.js" %}"></script>
+    <script>
+        jumbotronCarousel();
+    </script>
+{% endblock %}
 
 {% block body_class %}template-homepage{% endblock %}
 
-    {% block jumbotron %}
-        <div class="jumbotron">
-            <div class="container">
+    {% block pageTitle %}{{ page.title }}{% endblock %}
 
-                <h1>The Worst Human Society</h1>
-                <p>It's time to embrace the voices.</p>
-                <br>
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Join Us »</a>
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a>
+    {% block jumbotron %}
+        <div class="owl-carousel owl-theme">
+            <div class="jumbotron theWorst">
+                <div class="container">
+
+                    <h1>The 4th Annual Worst Human Tournament</h1>
+                    <p>It's gonna be yuge!</p>
+                    <br>
+                    <a class="btn btn-primary btn-lg" href="{% slugurl '4th-annual-worst-human-tournament' %}" role="button">Learn more »</a>
+                </div>
+            </div>
+
+            <div class="jumbotron society">
+                <div class="container">
+
+                    <h1>The Worst Human Society</h1>
+                    <p>It's time to embrace the voices.</p>
+                    <br>
+                    <a class="btn btn-primary btn-lg" href="{% slugurl 'worst-human-society' %}" role="button">Learn more »</a>
+                </div>
             </div>
         </div>
     {% endblock %}
 
+
     {% block leftContent %}
-        <h2>News Feed</h2>
-        {% for post in pages %}
-            {% with post=post.specific %}
-                <hr>
-                <h3><a href="{% pageurl post %}">{{ post.title }}</a></h3>
-                <p>{{ post.intro }}</p>
-            {% endwith %}
-        {% endfor %}
-    {% endblock %}
-
-    {% block content %}
-        <h2>{{ page.title }}</h2>
-        {{ page.body|richtext }}
-
-        <h2>Upcoming Events</h2>
+        <h3>Upcoming Events</h3>
         {% for post in events %}
             {% with post=post.specific %}
                 <hr>
-                <h3><a href="{% pageurl post %}">{{ post.title }}</a></h3>
+                <h4><a href="{% pageurl post %}">{{ post.title }}</a></h4>
                 <p>{{ post.start }} - {{ post.end }}</p>
                 <p>{{ post.intro }}</p>
             {% endwith %}
         {% endfor %}
 
     {% endblock %}
+
+    {% block rightContent %}
+        <h3>Recent Blog Articles</h3>
+        {% for post in pages %}
+            {% with post=post.specific %}
+                <hr>
+                <h4><a href="{% pageurl post %}">{{ post.title }}</a></h4>
+                <p>{{ post.intro }}</p>
+            {% endwith %}
+        {% endfor %}
+    {% endblock %}
+
 

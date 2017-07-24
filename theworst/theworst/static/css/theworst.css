@@ -1,9 +1,9 @@
 /*
 ===========================
     STANDARDS
-        Purple: #620784
         Dark Gray: #444444
-        Teal: #0097BF
+        Teal: #0097BF ( Good against purple)
+        blue: #0d79cc ( Good against darker bg)
 
         font-family: 'Great Vibes', cursive;
         font-family: 'Tangerine', cursive;
@@ -23,13 +23,41 @@ body
 
 a
 {
-    text-decoration: underline;
+    color: #61acec;
+    text-decoration: none;
 }
 
 a:focus, a:hover
 {
-    color: #0097BF;
+    color: #8cbcea;
     text-decoration: underline;
+}
+
+p
+{
+    line-height: 1.5em;
+}
+
+.left
+{
+    float: left;
+}
+
+.right
+{
+    float: right;
+}
+
+.noUnderline,
+.noUnderline:hover
+{
+    text-decoration: none;
+}
+
+.nopadding
+{
+    margin: 0;
+    padding: 0;
 }
 
 .btn-default,
@@ -110,27 +138,20 @@ a:focus, a:hover
 */
 
 
-.jumbotron {
-	background: #620784;
+.jumbotron
+{
 	color: #c3c0c0;
 	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 0;
 }
 
-.jumbotron h1
+@media (max-width: 1169px)
 {
-	font-family: 'Tangerine', cursive;
-    font-size: 148px;
-    text-shadow: 4px 4px #000000;
-    line-height: normal;
-    padding: 0;
-    margin: 0;
-}
-
-.jumbotron p
-{
-	font-family: 'Tangerine', cursive;
-	font-size: 60px;
-	line-height: normal;
+  .jumbotron
+   {
+    display: none;
+  }
 }
 
 .btn-primary
@@ -141,11 +162,56 @@ a:focus, a:hover
 	margin-bottom: 5px;
 	text-decoration: none;
 }
+
 .btn-primary:hover
 {
 	color: #0097BF;
 	border-color: #0097BF;
 	background-color: transparent;
+}
+
+.jumbotron.society
+{
+	background: #2c587d;
+}
+
+.society h1
+{
+	font-family: 'Tangerine', cursive;
+    font-size: 148px;
+    text-shadow: 4px 4px #000000;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+}
+
+.society p
+{
+	font-family: 'Tangerine', cursive;
+	font-size: 60px;
+	line-height: normal;
+}
+
+.jumbotron.theWorst
+{
+    background: #2e2f31 url('/static/images/trumpMedalBanner.jpg') top left no-repeat;
+}
+
+.theWorst .container
+{
+    padding-left: 400px;
+}
+
+.theWorst .btn-primary:hover
+{
+	color: #0d79cc;
+	border-color: #0d79cc;
+	background-color: transparent;
+}
+
+.theWorst h1
+{
+    text-shadow: 4px 4px #000000;
 }
 
 /*
@@ -156,12 +222,82 @@ a:focus, a:hover
 
 #page
 {
-    width: 1170px;
+    width: 100%;
+    max-width: 1170px;
     margin: auto;
-    margin-top: 60px;
+    margin-bottom: 60px;
     padding: 10px;
     position: relative;
     overflow: hidden;
+}
+
+#page>h1
+{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px #61acec;
+    font-size: 62px;
+    text-shadow: 2px 2px #0e0e0e;
+}
+
+a.bpTitle,
+a.bpTitle:focus,
+a.bpTitle:visited,
+a.bpTitle:hover
+{
+    display: block;
+    font-size: 30px;
+    float: left;
+    padding-right: 20px;
+    border-right: solid 1px #61acec;
+    margin-right: 20px;
+    color: #61acec;
+    text-decoration: none;
+}
+
+#content
+{
+    padding: 0 20px;
+}
+
+/*
+===========================
+    SQUARES
+===========================
+*/
+.square
+{
+    border-bottom: solid 1px #bebcbc;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.square a
+{
+    color: inherit;
+}
+
+.square .imgPlaceholder
+{
+    display: block;
+    width: 160px;
+    min-height: 1px;
+    margin-right: 10px;
+}
+
+.squareContent
+{
+    padding: 0 5px;
+}
+
+.squareContent h2
+{
+    font-size: 25px;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
 }
 
 /*
