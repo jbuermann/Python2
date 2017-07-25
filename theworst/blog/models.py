@@ -1,4 +1,5 @@
 from django.db import models
+from wagtailmenus.models import MenuPage
 
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -27,7 +28,7 @@ COMMON_BLOCKS = [
 
 
 # Index page for the Blog section (Called Articles in the UI)
-class BlogIndexPage(Page):
+class BlogIndexPage(MenuPage):
     body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
@@ -47,7 +48,7 @@ class BlogPageTag(TaggedItemBase):
 
 
 # All data we need to compose a Blog Page
-class BlogPage(Page):
+class BlogPage(MenuPage):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     content = StreamField(COMMON_BLOCKS, null=True, blank=True)
@@ -98,7 +99,7 @@ class BlogTagIndexPage(Page):
 #
 # EVENTS
 #
-class EventIndexPage(Page):
+class EventIndexPage(MenuPage):
     body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
@@ -113,7 +114,7 @@ class EventIndexPage(Page):
 
 
 # All data we need to compose an Event Page
-class EventPage(Page):
+class EventPage(MenuPage):
     start = models.DateTimeField("Start date")
     end = models.DateTimeField("End date")
     intro = models.CharField(max_length=250)

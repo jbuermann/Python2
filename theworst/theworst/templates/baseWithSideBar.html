@@ -1,4 +1,4 @@
-{% load static wagtailuserbar theworst_tags %}
+{% load static wagtailuserbar menu_tags %}
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -33,14 +33,9 @@
 
     <body class="{% block body_class %}{% endblock %}">
 
-        {% block menu %}
-            {% get_site_root as site_root %}
-            {% top_menu parent=site_root calling_page=self %}
-        {% endblock %}
-
+        {% main_menu %}
 
         <div id='page'>
-
             <h1 class='nopadding'>
                 <a href='/' class="bpTitle">Buermann<br />Presents</a> {% block pageTitle %}{% endblock %}
             </h1>
@@ -54,10 +49,10 @@
 
                 <!-- Grid Content -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         {% block leftContent %}{% endblock %}
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-9">
                         {% block rightContent %}{% endblock %}
                     </div>
                 </div>

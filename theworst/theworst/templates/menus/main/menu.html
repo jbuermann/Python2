@@ -1,5 +1,4 @@
-{% load theworst_tags wagtailcore_tags %}
-{% get_site_root as site_root %}
+{% load menu_tags wagtailcore_tags %}
 
 {# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
 <div role="navigation" class="navbar navbar-inverse sticky-top">
@@ -12,15 +11,20 @@
                 <span class="icon-bar"></span>
             </button>
             {# Link to home page #}
-            <a href="{% pageurl site_root %}" class="navbar-brand" title="{{ site_root.title }}" data-placement="bottom">
+            <a href="/" class="navbar-brand" title="Home" data-placement="bottom">
                 <i class="glyphicon glyphicon-home"></i>
             </a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                {% for menuitem in menuitems %}
-                    <li class="{% if menuitem.show_dropdown %}dropdown{% endif %}{% if menuitem.active %} active{% endif %}">
-                        <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                {% for item in menu_items %}
+                    <li class="{% if item.has_children_in_menu %}dropdown{% endif %}{{ item.active_class }}">
+                        <a href="{{ item.href }}"{% if item.has_children_in_menu %} class="dropdown-toggle" id="ddtoggle_{{ item.link_page.pk }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{% endif %}>
+                            {{ item.text }}{% if item.has_children_in_menu %} <span class="caret"></span>{% endif %}
+                        </a>
+                        {% if item.has_children_in_menu %}
+                            {% sub_menu item template="menus/main/children_menu.html" %}
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ul>
