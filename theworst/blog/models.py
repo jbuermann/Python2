@@ -121,6 +121,13 @@ class EventPage(MenuPage):
     location = models.CharField(max_length=250)
     facebook = models.CharField(max_length=250, null=True, blank=True)
     content = StreamField(COMMON_BLOCKS, null=True, blank=True)
+    cover = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -135,6 +142,7 @@ class EventPage(MenuPage):
             FieldPanel('end'),
             FieldPanel('location'),
             FieldPanel('facebook'),
+            ImageChooserPanel('cover'),
         ], heading="Event Information"),
         FieldPanel('intro'),
         StreamFieldPanel('content'),

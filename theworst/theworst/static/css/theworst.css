@@ -11,6 +11,13 @@
 ===========================
 */
 
+html,
+body
+{
+    position: relative;
+    height: 100%;
+}
+
 body
 {
     padding: 0;
@@ -19,6 +26,15 @@ body
     color: #bebcbc;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
+}
+
+.contentWidth
+{
+    width: 100%;
+    max-width: 1170px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
 }
 
 a
@@ -112,6 +128,11 @@ p
 .navbar-form .form-control
 {
     background-color: #444;
+}
+
+.navbar-inverse .navbar-nav>.active>a
+{
+    background: none;
 }
 
 .dropdown-menu
@@ -222,13 +243,7 @@ p
 
 #page
 {
-    width: 100%;
-    max-width: 1170px;
-    margin: auto;
-    margin-bottom: 60px;
     padding: 10px;
-    position: relative;
-    overflow: hidden;
 }
 
 #page>h1
@@ -236,8 +251,13 @@ p
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: solid 1px #61acec;
-    font-size: 62px;
+    font-size: 55px;
     text-shadow: 2px 2px #0e0e0e;
+}
+
+#page h2
+{
+    margin-top: 0;
 }
 
 a.bpTitle,
@@ -257,7 +277,19 @@ a.bpTitle:hover
 
 #content
 {
-    padding: 0 20px;
+    padding: 20px;
+}
+
+.tags
+{
+    margin: 0 20px;
+    padding: 10px;
+    border: solid 1px #61acec;
+}
+
+.tags h3
+{
+    margin-top: 0;
 }
 
 /*
@@ -298,6 +330,48 @@ a.bpTitle:hover
     margin: 0;
     margin-bottom: 10px;
     padding: 0;
+}
+
+/*
+===========================
+    FOOTER
+===========================
+*/
+.footer
+{
+    background-color: #2E2F31;
+    border-top: solid 1px #61acec;
+    width: 100%;
+}
+
+.firstMenu,
+.secondMenu
+{
+    margin-right: 40px;
+}
+
+.footer ul
+{
+    padding-left: 0;
+}
+
+.footer ul ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+.footer li
+{
+    list-style: none;
+}
+
+.miniFooter
+{
+    font-size: 12px;
+    color: #beaf9d;
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 /*

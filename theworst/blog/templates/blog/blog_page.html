@@ -25,7 +25,18 @@
 
 {% block pageTitle %}{{ page.title }}{% endblock %}
 
+
+
 {% block content %}
+    {% if page.tags.all.count %}
+        <div class="tags right">
+            <h3>Related Content</h3>
+            {% for tag in page.tags.all %}
+                <a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     {% for block in page.content %}
 
         {% if block.block_type == 'heading' %}
@@ -46,15 +57,6 @@
         {% endif %}
 
     {% endfor %}
-
-    {% if page.tags.all.count %}
-        <div class="tags">
-            <h3>Tags</h3>
-            {% for tag in page.tags.all %}
-                <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
-            {% endfor %}
-        </div>
-    {% endif %}
 
     {% if page.get_parent.url != '/' %}
         <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
