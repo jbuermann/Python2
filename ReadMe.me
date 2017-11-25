@@ -3,6 +3,11 @@ python manage.py makemigrations
 python manage.py migrate
 bpEnv\scripts\activate
 
+./manage.py collectstatic
+source bpEnv/bin/activate
+
+
+tail /var/logapache2/buermann-theworst-error.log -f
 
 ToDo
 
