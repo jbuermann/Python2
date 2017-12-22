@@ -1,0 +1,16 @@
+.meta
+{
+    float: right;
+    text-align: right;
+    font-size: 14px;
+}
+
+.questionHeader:first-child
+{
+    margin-top: 0;
+}
+
+.questionHeader:not(:first-child)
+{
+    margin-top: 30px;
+}

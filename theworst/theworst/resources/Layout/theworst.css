@@ -28,15 +28,6 @@ body
     font-size: 16px;
 }
 
-.contentWidth
-{
-    width: 100%;
-    max-width: 1170px;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-}
-
 a
 {
     color: #61acec;
@@ -47,6 +38,15 @@ a:focus, a:hover
 {
     color: #8cbcea;
     text-decoration: underline;
+}
+
+
+a.linkBlock,
+a.linkBlock:visited,
+a.linkBlock:focus,
+a.linkBlock:hover
+{
+    color: inherit;
 }
 
 p
@@ -89,6 +89,18 @@ p
 {
     color: #0097BF;
 }
+
+.responsive
+{
+    width: 100%;
+    height: auto;
+}
+
+h1,h2,h3,h4
+{
+    color: #fcfeff;
+}
+
 
 /*
 ===========================
@@ -149,90 +161,19 @@ p
 
 .navbar-inverse .navbar-nav .dropdown-menu li a:hover
 {
-	background: #452c46;
+	background-color: #1b3154;
 }
 
 /*
 ===========================
-    JUMBOTRON
+    BANNERS (BLOG / EVENTS)
 ===========================
 */
 
-
-.jumbotron
+.banner
 {
-	color: #c3c0c0;
-	text-align: center;
-	margin-top: 20px;
-	margin-bottom: 0;
-}
-
-@media (max-width: 1169px)
-{
-  .jumbotron
-   {
-    display: none;
-  }
-}
-
-.btn-primary
-{
-	color: #fff;
-	background-color: transparent;
-	border-color: white;
-	margin-bottom: 5px;
-	text-decoration: none;
-}
-
-.btn-primary:hover
-{
-	color: #0097BF;
-	border-color: #0097BF;
-	background-color: transparent;
-}
-
-.jumbotron.society
-{
-	background: #2c587d;
-}
-
-.society h1
-{
-	font-family: 'Tangerine', cursive;
-    font-size: 148px;
-    text-shadow: 4px 4px #000000;
-    line-height: normal;
-    padding: 0;
-    margin: 0;
-}
-
-.society p
-{
-	font-family: 'Tangerine', cursive;
-	font-size: 60px;
-	line-height: normal;
-}
-
-.jumbotron.theWorst
-{
-    background: #2e2f31 url('/static/images/trumpMedalBanner.jpg') top left no-repeat;
-}
-
-.theWorst .container
-{
-    padding-left: 400px;
-}
-
-.theWorst .btn-primary:hover
-{
-	color: #0d79cc;
-	border-color: #0d79cc;
-	background-color: transparent;
-}
-
-.theWorst h1
-{
-    text-shadow: 4px 4px #000000;
+    border: solid 1px #272727;
+    border-radius: 5px;
 }
 
 /*
@@ -253,11 +194,6 @@ p
     border-bottom: solid 1px #61acec;
     font-size: 55px;
     text-shadow: 2px 2px #0e0e0e;
-}
-
-#page h2
-{
-    margin-top: 0;
 }
 
 a.bpTitle,

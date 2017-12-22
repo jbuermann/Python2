@@ -1,8 +1,7 @@
+<!doctype html>
 {% load static menu_tags wagtailcore_tags wagtailuserbar %}
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>
             {% block title %}
                 {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
@@ -13,6 +12,8 @@
                 {% endwith %}
             {% endblock %}
         </title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -29,7 +30,7 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static '/bootstrap/dist/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/theworst.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/Layout.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Tangerine" rel="stylesheet">
 
         {% block extra_css %}{% endblock %}
@@ -40,20 +41,33 @@
 
         {% main_menu %}
 
-        <div id='page' class='contentWidth'>
-            <h1 class='nopadding'>
-                <a href='/' class="bpTitle">Buermann<br />Presents</a> {% block pageTitle %}{% endblock %}
+        <section id='page' class='siteWidth flex__row'>
+            <h1 class='nopadding flex__full'>
+                <a href='/' class="bpTitle">Buermann<br />Presents</a>
+                <span class='pageTitle'>{% block pageTitle %}{% endblock %}</span>
             </h1>
 
-            {% block jumbotron %}{% endblock %}
+            <section class="flex_full optional">{% block banner %}{% endblock %}</section>
 
-            <div id='content'>
+            <div id='content flex_full '>
                 {% block content %}{% endblock %}
                 {% block body %}{% endblock %}
             </div>
-        </div>
+        </section>
 
         {% wagtailuserbar %}
+
+    <footer class="footer flex__row">
+        <div class="siteWidth">
+            <div class="firstMenu left">{% flat_menu 'footerInternal' %}</div>
+            <div class="secondMenu left">{% flat_menu 'footerSocial' %}</div>
+            <div class="thirddMenu left">{% flat_menu 'footerJoinUs' %}</div>
+        </div>
+        <div class="siteWidth miniFooter">
+            Disclaimer: Our events are not endorsed in any way by the games we run.
+        </div>
+    </footer>
+
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/theworst.js' %}"></script>
@@ -62,16 +76,5 @@
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
-
-    <footer class="footer">
-        <div class="contentWidth">
-            <div class="firstMenu left">{% flat_menu 'footerInternal' %}</div>
-            <div class="secondMenu left">{% flat_menu 'footerSocial' %}</div>
-            <div class="thirddMenu left">{% flat_menu 'footerJoinUs' %}</div>
-        </div>
-        <div class="contentWidth miniFooter">
-            Disclaimer: Our events are not endorsed in any way by the games we run.
-        </div>
-    </footer>
     </body>
 </html>

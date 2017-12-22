@@ -1,0 +1,107 @@
+/*
+===========================
+    JUMBOTRON
+===========================
+*/
+
+.jumbotron
+{
+	color: #c3c0c0;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 0;
+	height: 250px;
+}
+
+@media (max-width: 1169px)
+{
+  .jumbotron
+   {
+    display: none;
+  }
+}
+
+.btn-primary
+{
+	color: #fff;
+	background-color: transparent;
+	border-color: white;
+	margin-bottom: 5px;
+	text-decoration: none;
+}
+
+.btn-primary:hover
+{
+	color: #0097BF;
+	border-color: #0097BF;
+	background-color: transparent;
+}
+
+/*
+===========================
+    BP EVENTS
+===========================
+*/
+
+.jumbotron.bpevents
+{
+    background: url('/static/images/default.png') top left no-repeat;
+	background-size: cover;
+}
+
+/*
+===========================
+    WORST SOCIETY
+===========================
+*/
+
+.jumbotron.society
+{
+	background: #2c587d;
+}
+
+.society h1
+{
+	font-family: 'Tangerine', cursive;
+    font-size: 148px;
+    text-shadow: 4px 4px #000000;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+}
+
+.society p
+{
+	font-family: 'Tangerine', cursive;
+	font-size: 60px;
+	line-height: normal;
+}
+
+
+/*
+===========================
+    WORST HUMAN TOURNAMENT
+===========================
+*/
+
+.jumbotron.theWorst
+{
+    background: #2e2f31 url('/static/images/trumpMedalBanner.jpg') top left no-repeat;
+}
+
+.theWorst .container
+{
+    padding-left: 400px;
+}
+
+.theWorst .btn-primary:hover
+{
+	color: #0d79cc;
+	border-color: #0d79cc;
+	background-color: transparent;
+}
+
+.theWorst h1
+{
+    text-shadow: 4px 4px #000000;
+}

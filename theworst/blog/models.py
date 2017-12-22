@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from wagtailmenus.models import MenuPage
 
 from modelcluster.fields import ParentalKey
@@ -110,6 +111,7 @@ class EventIndexPage(MenuPage):
         # Update context to include only published posts, ordered by reverse-chron
         context = super(EventIndexPage, self).get_context(request)
         context['events'] = self.get_children().live().order_by('-first_published_at')
+        context['today'] = timezone.now()
         return context
 
 
@@ -121,6 +123,13 @@ class EventPage(MenuPage):
     location = models.CharField(max_length=250)
     facebook = models.CharField(max_length=250, null=True, blank=True)
     content = StreamField(COMMON_BLOCKS, null=True, blank=True)
+    banner = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
     cover = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -142,6 +151,7 @@ class EventPage(MenuPage):
             FieldPanel('end'),
             FieldPanel('location'),
             FieldPanel('facebook'),
+            ImageChooserPanel('banner'),
             ImageChooserPanel('cover'),
         ], heading="Event Information"),
         FieldPanel('intro'),

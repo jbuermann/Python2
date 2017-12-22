@@ -1,12 +1,12 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 
-<div class="container-carousel" style="width:300px">
+<div class="container-carousel">
   <div id="gallery" class="owl-carousel owl-theme">
 
     {% for item in self %}
         <div>
-        {% image item.image fill-300x300 %}
-        <p>{{ item.caption }}</p>
+            {% image item.image fill-300x300 %}
+            <p>{{ item.caption }}</p>
         </div>
     {% endfor %}
 

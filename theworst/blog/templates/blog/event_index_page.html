@@ -11,19 +11,22 @@
 
     {% for post in events %}
         {% with post=post.specific %}
-            <a class="noUnderline" href="{% pageurl post %}">
-                <div class="square">
-                    <div class="imgPlaceholder left">
-                        {% with post.cover as cover %}
-                            {% if cover %}{% image cover width-160 %}{% endif %}
-                        {% endwith %}
+            {% if today <= post.end %}
+                <a class="noUnderline linkBlock" href="{% pageurl post %}">
+                    <div class="square">
+                        <div class="imgPlaceholder left">
+                            {% with post.cover as cover %}
+                                {% if cover %}{% image cover width-160 %}{% endif %}
+                            {% endwith %}
+                        </div>
+                        <div class="squareContent left">
+                            <h2>{{ post.title }}</h2>
+                            <small>{{ post.start }} - {{ post.end }}</small>
+                            <p>{{ post.intro }}</p>
+                        </div>
                     </div>
-                    <div class="squareContent left">
-                        <h2>{{ post.title }}</h2>
-                        <p>{{ post.intro }}</p>
-                    </div>
-                </div>
-            </a>
+                </a>
+            {% endif %}
         {% endwith %}
     {% endfor %}
 

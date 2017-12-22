@@ -10,7 +10,7 @@ X_FRAME_OPTIONS = 'DENY'
 SERVER_EMAIL = 'jordan.buermann@gmail.com'
 ADMINS = [('Jordan', 'jordan.buermann@gmail.com')]
 
-ALLOWED_HOSTS = ['www.bpevents.org','bpevents.org']
+ALLOWED_HOSTS = ['www.bpevents.org','bpevents.org','45.79.68.180']
 
 with open('/home/buermann/bpevents/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
@@ -23,6 +23,9 @@ LOGGING = {
         'logfile': {
             'class': 'logging.handlers.WatchedFileHandler',
             'filename': '/var/log/apache2/buermann-theworst-error.log'
+        },
+        'null': {
+                'class': 'logging.NullHandler',
         },
     },
     'loggers': {
@@ -37,12 +40,6 @@ LOGGING = {
             'handlers': ['logfile'],
             'level': 'ERROR',
             'propagate': False,
-        },
-        # Your own app - this assumes all your logger names start with "myapp."
-        'myapp': {
-            'handlers': ['logfile'],
-            'level': 'WARNING', # Or maybe INFO or DEBUG
-            'propagate': False
         },
     },
 }

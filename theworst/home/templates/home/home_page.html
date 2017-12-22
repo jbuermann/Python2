@@ -1,10 +1,11 @@
-{% extends "baseWithSideBar.html" %}
+{% extends "base.html" %}
 
 {% load wagtailcore_tags static %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static "/owl.carousel/dist/assets/owl.carousel.min.css" %}" />
     <link rel="stylesheet" href="{% static "/owl.carousel/dist/assets/owl.theme.default.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/HomePage.css' %}">
 {% endblock %}
 
 {% block extra_js %}
@@ -18,57 +19,50 @@
 
     {% block pageTitle %}{{ page.title }}{% endblock %}
 
-    {% block jumbotron %}
-        <div class="owl-carousel owl-theme">
-            <div class="jumbotron bpevents">
-                <div class="container">
-                    <h1>Buermann Presentst</h1>
+    {% block content %}
+        <div class="flex__row">
+
+            <article id="card__events" class="card">
+                <h4 class="card__title">Events</h4>
+                <div class="card__content">
+                    {% for post in events %}
+                        {% with post=post.specific %}
+                            <strong><a href="{% pageurl post %}">{{ post.title }}</a></strong>
+                            <p>{{ post.start }} - {{ post.end }}</p>
+                            <p>{{ post.intro }}</p>
+                        {% endwith %}
+                    {% endfor %}
                 </div>
-            </div>
+            </article>
 
-            <!--<div class="jumbotron theWorst">-->
-                <!--<div class="container">-->
-                    <!--<h1>The Worst Human Tournament</h1>-->
-                    <!--<br>-->
-                    <!--<a class="btn btn-primary btn-lg" href="{% slugurl '4th-annual-worst-human-tournament' %}" role="button">Learn more »</a>-->
-                <!--</div>-->
-            <!--</div>-->
+            <article id="card__services" class="card">
+                <h4 class="card__title">Services</h4>
+                <p class="card__content">
+                    Need something to spice up your event? We've got you covered.
+                </p>
+            </article>
 
-            <!--<div class="jumbotron society">-->
-                <!--<div class="container">-->
 
-                    <!--<h1>The Worst Human Society</h1>-->
-                    <!--<p>It's time to embrace the voices.</p>-->
-                    <!--<br>-->
-                    <!--<a class="btn btn-primary btn-lg" href="{% slugurl 'worst-human-society' %}" role="button">Learn more »</a>-->
-                <!--</div>-->
-            <!--</div>-->
+            <article id="card__twitch" class="card">
+                <h4 class="card__title">Twitch</h4>
+                <p class="card__content">
+                    We're streaming!
+                </p>
+            </article>
         </div>
-    {% endblock %}
 
+        <!--<div class="flex__row">-->
 
-    {% block leftContent %}
-        <h3>Upcoming Events</h3>
-        {% for post in events %}
-            {% with post=post.specific %}
-                <hr>
-                <h4><a href="{% pageurl post %}">{{ post.title }}</a></h4>
-                <p>{{ post.start }} - {{ post.end }}</p>
-                <p>{{ post.intro }}</p>
-            {% endwith %}
-        {% endfor %}
-
-    {% endblock %}
-
-    {% block rightContent %}
-        <h3>Recent Blog Articles</h3>
-        {% for post in pages %}
-            {% with post=post.specific %}
-                <hr>
-                <h4><a href="{% pageurl post %}">{{ post.title }}</a></h4>
-                <p>{{ post.intro }}</p>
-            {% endwith %}
-        {% endfor %}
+            <!--<div class="flex__col flex__one">-->
+                <!--<h3>Recent Blog Articles</h3>-->
+                <!--{% for post in pages %}-->
+                    <!--{% with post=post.specific %}-->
+                        <!--<h4><a href="{% pageurl post %}">{{ post.title }}</a></h4>-->
+                        <!--<p>{{ post.intro }}</p>-->
+                    <!--{% endwith %}-->
+                <!--{% endfor %}-->
+            <!--</div>-->
+        <!--</div>-->
     {% endblock %}
 
 

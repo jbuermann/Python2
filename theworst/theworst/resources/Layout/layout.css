@@ -1,0 +1,97 @@
+/*
+    Sets the element to expand full width of the site, to a max
+*/
+.siteWidth
+{
+    width: 100%;
+    max-width: 1170px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+article
+{
+    box-sizing: border-box;
+}
+
+.blue  {color: #61acec;}
+.slate {color: #333;}
+.smoke {color: #ebebeb;}
+.dim   {color: #666;}
+.gray  {color: #999;}
+.red   {color: #e25841;}
+
+/*
+    ===================
+    FLEX BOX
+    ===================
+*/
+.flex__row
+{
+    display: flex;
+    flex-flow: wrap;
+}
+
+.flex__col
+{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.flex__one
+{
+    flex: 1;
+}
+
+.flex__two
+{
+    flex: 2;
+}
+
+.flex__three
+{
+    flex: 3;
+}
+
+.flex__full
+{
+    flex-basis: 100%;
+}
+
+/*
+    ===================
+    HIDE OPTIONAL ELEMENTS
+    ===================
+*/
+.optional:empty
+{
+    display: none;
+}
+
+@media screen and (max-width:1170px)
+{
+    #page>h1
+    {
+        font-size: 30px !important;
+    }
+
+    #page a.bpTitle,
+    #page a.bpTitle:focus,
+    #page a.bpTitle:hover,
+    #page a.bpTitle:visited
+    {
+        display: none;
+    }
+
+    .pageTitle
+    {
+        display: inline-block;
+        line-height: 45px;
+    }
+
+    .footer
+    {
+        padding: 0 10px;
+    }
+}

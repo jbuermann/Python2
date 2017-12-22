@@ -5,6 +5,7 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static "/owl.carousel/dist/assets/owl.carousel.min.css" %}" />
     <link rel="stylesheet" href="{% static "/owl.carousel/dist/assets/owl.theme.default.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Events.css' %}">
 {% endblock %}
 
 {% block extra_js %}
@@ -12,9 +13,10 @@
     <script>
         $(document).ready(function(){
             $('.owl-carousel').owlCarousel({
-                items : 1,
-                loop : true,
-                center : true,
+                items : 3,
+                margin: 10,
+                nav : false,
+                loop : false,
                 autoWidth:true,
             });
         });
@@ -23,11 +25,31 @@
 
 {% block body_class %}template-eventpage{% endblock %}
 
-{% block pageTitle %}{{ page.title }}{% endblock %}
+{% block pageTitle %}
+{{ page.title }}
+
+<p class="meta">
+    {{ page.location }}<br />
+    {{ page.start }} - {{ page.end }} <br />
+    <a href="{{ page.facebook }}">View on Facebook</a>
+</p>
+{% endblock %}
+
+
+{% block banner %}
+{% with page.banner as banner %}
+    {% if banner %}<div class="banner">{% image banner max-1150x250 class='responsive' %}</div>{% endif %}
+{% endwith %}
+{% endblock %}
 
 {% block content %}
-    <p class="meta">{{ page.start }} - {{ page.end }} <br /> <a href="{{ page.facebook }}">View on Facebook</a></p>
+    <h2 class="questionHeader">Where?</h2>
+    <p>{{ page.location }}</p>
 
+    <h2 class="questionHeader">When?</h2>
+    <p>{{ page.start }} - {{ page.end }}</p>
+
+    <h2 class="questionHeader">What is it?</h2>
     {% for block in page.content %}
 
         {% if block.block_type == 'sub_heading' %}
@@ -44,6 +66,6 @@
 
     {% endfor %}
 
-    <p><a href="{{ page.get_parent.url }}">See all Events</a></p>
+    <p class="allEventsWrapper"><a href="{{ page.get_parent.url }}"  class="allEventsLink">See all Events</a></p>
 
 {% endblock %}
