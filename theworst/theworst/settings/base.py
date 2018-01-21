@@ -161,6 +161,6 @@ BOWER_INSTALLED_APPS = (
     'jquery',
     'owl.carousel',
     'bootstrap',
-    'fullcalendar',
+    'vue'
 )
 

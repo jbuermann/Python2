@@ -20,6 +20,7 @@ var $       = require('gulp-load-plugins')();// Auto Loads plugins, call them us
 var app     = {};
 app.fs      = require('fs');
 app.path    = require('path');
+app.sync    = require('browser-sync').create(); // create a browser sync instance.
 var config  = app.config =
 {
     resources: 'theworst/resources',
@@ -63,3 +64,18 @@ gulp.task('default', ['css']);
 */
 
 gulp.task('css' ,require('./tools/gulp/tasks/styles')(gulp,$,app));
+
+gulp.task('watch', ['browser-sync'],function(){
+    gulp.watch([config.resources + '/**/*.css',config.resources + '/**/*.js'], ['css']);
+})
+
+/**
+ * BROWSER SYNC TASK
+ * @brief Sets up and configs our Browser Syn integration
+ */
+gulp.task('browser-sync', function() {
+    app.sync.init({
+        notify: false,
+        proxy: "localhost:8000"
+    });
+});

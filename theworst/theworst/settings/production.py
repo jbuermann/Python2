@@ -10,7 +10,7 @@ X_FRAME_OPTIONS = 'DENY'
 SERVER_EMAIL = 'jordan.buermann@gmail.com'
 ADMINS = [('Jordan', 'jordan.buermann@gmail.com')]
 
-ALLOWED_HOSTS = ['www.bpevents.org','bpevents.org','45.79.68.180']
+ALLOWED_HOSTS = ['www.bpevents.org','bpevents.org']
 
 with open('/home/buermann/bpevents/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()

@@ -11,6 +11,7 @@ module.exports = function (gulp,$,app)
                 .pipe($.concat(folder + '.css'))
                 .pipe($.cssmin())
                 .pipe(gulp.dest(config.static + '/css/'))
+                 .pipe(app.sync.stream())
         });
 
         // Return a list of tasks to be run
