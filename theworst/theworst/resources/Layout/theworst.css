@@ -108,61 +108,85 @@ h1,h2,h3,h4
 ===========================
 */
 
-.navbar
+.navWrapper
 {
-	margin-bottom: 0;
+    background-color: #2a2a2a;
 }
 
-.navbar-child
+#mainNavBar.navbar
+{
+    margin: auto;
+	margin-bottom: 0;
+    max-width: 1170px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#mainNavBar .navbar-toggler
+{
+    background-color: #0097BF;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 3px;
+}
+
+#mainNavBar .navbar-toggler-icon
+{
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iMzJweCIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyIDMyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHdpZHRoPSIzMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cGF0aCBkPSJNNCwxMGgyNGMxLjEwNCwwLDItMC44OTYsMi0ycy0wLjg5Ni0yLTItMkg0QzIuODk2LDYsMiw2Ljg5NiwyLDhTMi44OTYsMTAsNCwxMHogTTI4LDE0SDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDIgIHMwLjg5NiwyLDIsMmgyNGMxLjEwNCwwLDItMC44OTYsMi0yUzI5LjEwNCwxNCwyOCwxNHogTTI4LDIySDRjLTEuMTA0LDAtMiwwLjg5Ni0yLDJzMC44OTYsMiwyLDJoMjRjMS4xMDQsMCwyLTAuODk2LDItMiAgUzI5LjEwNCwyMiwyOCwyMnoiLz48L3N2Zz4=");
+}
+
+#mainNavBar .navbar-child
 {
     padding-left: 10px;
 }
 
-.navbar-inverse
+#mainNavBar .navbar-inverse
 {
 	background: #2E2F31;
 	border: 0;
 }
 
-.navbar-inverse a,
-.navbar-inverse .navbar-nav li a
+#mainNavBar .navbar-inverse a,
+#mainNavBar .navbar-inverse .navbar-nav li a
 {
 	color: #9d9d9d;
 	text-decoration: none;
 
 }
 
-.navbar-inverse .navbar-nav li a:hover
+#mainNavBar .navbar-inverse .navbar-nav li a:hover
 {
 	background: #000;
 }
 
-.navbar-form .form-control
+#mainNavBar .navbar-form .form-control
 {
     background-color: #444;
 }
 
-.navbar-inverse .navbar-nav>.active>a
+#mainNavBar .navbar-inverse .navbar-nav>.active>a
 {
     background: none;
 }
 
-.dropdown-menu
+#mainNavBar .dropdown-menu
 {
-	background: #2E2F31;
+	background-color: #2a2a2a;
 	border-radius: 0;
 	border: 0;
 }
 
-.dropdown-menu li a
+#mainNavBar .dropdown-item
 {
 	padding: 10px;
+    color: #61acec;
 }
 
-.navbar-inverse .navbar-nav .dropdown-menu li a:hover
+#mainNavBar .dropdown-menu a:hover
 {
 	background-color: #1b3154;
 }
+
 
 /*
 ===========================

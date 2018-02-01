@@ -66,6 +66,17 @@
 
     {% endfor %}
 
+    {% if page.vue.markup %}
+        <h3>Our Games!</h3>
+        {{ page.vue.markup }}
+    {% endif %}
+
     <p class="allEventsWrapper"><a href="{{ page.get_parent.url }}"  class="allEventsLink">See all Events</a></p>
 
 {% endblock %}
+
+{#
+VUE
+ I need to create a dummy page for testing Vue components while I'm working on them, so I can then copy paste the template in where I need it
+ I don't like how I did it... but it works.
+#}

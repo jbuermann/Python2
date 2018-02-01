@@ -28,10 +28,12 @@
         {% load static %}
         <script type="text/javascript" src='{% static 'jquery/dist/jquery.js' %}'></script>
         <script type="text/javascript" src='{% static 'vue/dist/vue.js' %}'></script>
+        <script type="text/javascript" src="{% static 'js/VueComps.js' %}"></script>
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static '/bootstrap/dist/css/bootstrap.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/Layout.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/VueComps.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Tangerine" rel="stylesheet">
 
         {% block extra_css %}{% endblock %}
@@ -40,7 +42,9 @@
 
     <body class="{% block body_class %}{% endblock %}">
 
+        <div class="navWrapper">
         {% main_menu %}
+        </div>
 
         <section id='page' class='siteWidth flex__row'>
             <h1 class='nopadding flex__full'>
@@ -71,11 +75,12 @@
 
 
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/theworst.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/Layout.js' %}"></script>
         <script src="{% static '/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
+
     </body>
 </html>

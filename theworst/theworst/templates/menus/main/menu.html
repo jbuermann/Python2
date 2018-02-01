@@ -1,25 +1,21 @@
 {% load menu_tags wagtailcore_tags %}
 
-{# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
-<div role="navigation" class="navbar navbar-inverse sticky-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            {# Link to home page #}
-            <a href="/" class="navbar-brand" title="Home" data-placement="bottom">
-                <i class="glyphicon glyphicon-home"></i>
-            </a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+<nav id='mainNavBar' class="navbar navbar-expand-lg navbar-inverse sticky-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
                 {% for item in menu_items %}
-                    <li class="{% if item.has_children_in_menu %}dropdown{% endif %}{{ item.active_class }}">
-                        <a href="{{ item.href }}"{% if item.has_children_in_menu %} class="dropdown-toggle" id="ddtoggle_{{ item.link_page.pk }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{% endif %}>
+                    <li class="nav-item {{ item.active_class }} {% if item.has_children_in_menu %}dropdown{% endif %}">
+                        <a href="{{ item.href }}"
+                           class="nav-link {% if item.has_children_in_menu %}dropdown-toggle{% endif %}"
+                            {% if item.has_children_in_menu %}
+                                id="ddtoggle_{{ item.link_page.pk }}"
+                                role="button"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"
+                            {% endif %}>
                             {{ item.text }}{% if item.has_children_in_menu %} <span class="caret"></span>{% endif %}
                         </a>
                         {% if item.has_children_in_menu %}
@@ -39,5 +35,4 @@
                 </div>
             </form>
         </div>
-    </div>
-</div>
+</nav>

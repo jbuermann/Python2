@@ -55,7 +55,7 @@ app.getFolders = function(dir)
  * @brief This runs when typing 'gulp'
  * @description This is called during build using --production flag so be careful if you edit this.
  */
-gulp.task('default', ['css']);
+gulp.task('default', ['css','js']);
 
 /*
 ============================
@@ -64,9 +64,10 @@ gulp.task('default', ['css']);
 */
 
 gulp.task('css' ,require('./tools/gulp/tasks/styles')(gulp,$,app));
+gulp.task('js' ,require('./tools/gulp/tasks/scripts')(gulp,$,app));
 
 gulp.task('watch', ['browser-sync'],function(){
-    gulp.watch([config.resources + '/**/*.css',config.resources + '/**/*.js'], ['css']);
+    gulp.watch([config.resources + '/**/*.css',config.resources + '/**/*.js'], ['css','js']);
 })
 
 /**

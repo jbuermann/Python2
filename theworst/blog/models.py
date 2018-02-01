@@ -1,8 +1,9 @@
 from django.db import models
+from django import forms
 from django.utils import timezone
 from wagtailmenus.models import MenuPage
 
-from modelcluster.fields import ParentalKey
+from modelcluster.fields import ParentalKey,ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
@@ -15,6 +16,8 @@ from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailsearch import index
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 
 COMMON_BLOCKS = [
     ('sub_heading', blocks.CharBlock(classname="sub title")),
@@ -137,6 +140,7 @@ class EventPage(MenuPage):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    vue = models.ForeignKey('blog.VueComps', on_delete=models.SET_NULL, null=True, related_name='+')
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -156,4 +160,18 @@ class EventPage(MenuPage):
         ], heading="Event Information"),
         FieldPanel('intro'),
         StreamFieldPanel('content'),
+        SnippetChooserPanel('vue'),
     ]
+
+
+@register_snippet
+class VueComps(models.Model):
+    title = models.CharField(max_length=255)
+    markup = StreamField([('vue',blocks.RawHTMLBlock(required=False))], null=True, blank=True)
+    panels = [
+        FieldPanel('title'),
+        StreamFieldPanel('markup'),
+    ]
+
+    def __str__(self):
+        return self.title

@@ -1,0 +1,19 @@
+module.exports = function (gulp,$,app)
+{
+    return function ()
+    {
+        var config = app.config;
+        var folders = app.getFolders(config.resources);
+        // Loop through the css folders and combine all css within into a file matching the dir name
+        var tasks = folders.map(function (folder)
+        {
+             return gulp.src(config.resources + '/' + folder + '/*.js')
+                .pipe($.concat(folder + '.js'))
+                .pipe(gulp.dest(config.static + '/js/'))
+                .pipe(app.sync.stream())
+        });
+
+        // Return a list of tasks to be run
+        return tasks;
+    }
+};

@@ -4,13 +4,13 @@
     margin: 10px 20px 10px 0;
     min-width: 270px;
     flex: 1;
+    background-color: inherit;
 }
 
 .card__title
 {
     padding: 10px;
     margin: 0;
-    border-bottom:solid 1px #60acec;
     font-weight: bolder;
     color: #fff;
     font-size: 20px;
