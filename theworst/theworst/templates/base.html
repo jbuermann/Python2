@@ -28,12 +28,10 @@
         {% load static %}
         <script type="text/javascript" src='{% static 'jquery/dist/jquery.js' %}'></script>
         <script type="text/javascript" src='{% static 'vue/dist/vue.js' %}'></script>
-        <script type="text/javascript" src="{% static 'js/VueComps.js' %}"></script>
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static '/bootstrap/dist/css/bootstrap.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/Layout.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/VueComps.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Tangerine" rel="stylesheet">
 
         {% block extra_css %}{% endblock %}

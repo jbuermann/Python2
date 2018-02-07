@@ -1,4 +1,5 @@
-    games =  [
+module.exports = {
+  games: [
       ["Despicable Me Memory","3","varies","1+"  ],
       ["Recall of Cthulhu","4","15 - 30m","2 to 4"  ],
       ["Building An Elder God","6","15 - 30m","2 to 5"  ],
@@ -36,4 +37,5 @@
       ["BloodBowl Team Manager","14","1 - 2h","2 to 4"  ],
       ["Aye Dark Overlord","14","30-60m","4 to 7"  ],
       ["Epic Spell Wars","15","varies","2 to 6"  ]
-    ]
+  ]
+}
