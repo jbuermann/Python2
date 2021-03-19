@@ -8,7 +8,7 @@ django-modelcluster==3.1
 django-sitetree==1.8.0
 django-taggit==0.22.1
 django-treebeard==4.1.2
-djangorestframework==3.6.3
+djangorestframework==3.11.2
 html5lib==0.999999999
 icalendar==3.11.4
 idna==2.5
