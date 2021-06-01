@@ -19,7 +19,7 @@ pytz==2017.2
 requests==2.18.1
 six==1.10.0
 Unidecode==0.4.21
-urllib3==1.21.1
+urllib3==1.26.5
 wagtail>=1.13
 wagtailmenus==2.3.2
 webencodings==0.5.1
